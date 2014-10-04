@@ -1,0 +1,253 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Hmw1</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-09-05"><meta name="DC.source" content="Hmw1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Problem 1</a></li><li><a href="#6">Problem 2</a></li></ul></div><pre class="codeinput">load(<span class="string">'Data_HW1.mat'</span>)
+</pre><h2>Problem 1<a name="2"></a></h2><p>a)</p><pre class="codeinput">n = size(R(:),1);
+Rmean = sum(R(:)) / n
+
+R_sorted = sort(R(:));
+Rmedian = .5*(R_sorted(n/2) + R_sorted(n/2+1))
+
+[nelements,xcenters] = hist(R(:), 15);
+[maxelem, indmax] = max(nelements);
+Rmode = xcenters(indmax)
+
+Rmaximum = R_sorted(n)
+
+Rminimum = R_sorted(1)
+</pre><pre class="codeoutput">
+Rmean =
+
+   35.9564
+
+
+Rmedian =
+
+   35.8048
+
+
+Rmode =
+
+   31.3562
+
+
+Rmaximum =
+
+   62.7123
+
+
+Rminimum =
+
+     0
+
+</pre><p>b)</p><pre class="codeinput">figure
+hist(R(:))
+title(<span class="string">'normal histogram'</span>)
+xlabel(<span class="string">'value'</span>)
+ylabel(<span class="string">'count'</span>)
+
+figure
+[nelements,xcenters] = hist(R(:), 15);
+nelements_c = cumsum(nelements);
+bar(xcenters, nelements_c, <span class="string">'BarWidth'</span>,1)
+title(<span class="string">'cumulative histogram'</span>)
+xlabel(<span class="string">'value'</span>)
+ylabel(<span class="string">'count'</span>)
+</pre><img vspace="5" hspace="5" src="Hmw1_01.png" alt=""> <img vspace="5" hspace="5" src="Hmw1_02.png" alt=""> <p>c)</p><pre class="codeinput">Rstd = std(R(:))
+
+Q1 = R_sorted(n/4);
+Q3 = R_sorted(3*n/4);
+R_IQR = Q3 - Q1
+</pre><pre class="codeoutput">
+Rstd =
+
+    8.4179
+
+
+R_IQR =
+
+   13.1185
+
+</pre><p>d)</p><pre class="codeinput">Rskewness = sum((R(:)-Rmean).^3)/(n*Rstd^3)
+
+R_CV = Rstd / Rmean
+</pre><pre class="codeoutput">
+Rskewness =
+
+    0.0632
+
+
+R_CV =
+
+    0.2341
+
+</pre><h2>Problem 2<a name="6"></a></h2><p>a)</p><pre class="codeinput">hist(T(:), 50)
+</pre><img vspace="5" hspace="5" src="Hmw1_03.png" alt=""> <p>b)</p><p>Tq = quantile(T(:), 0:.01:1) Rq = quantile(R(:), 0:.01:1) figure plot(Rq, Tq, 'x')</p><pre class="codeinput">qqplot(R(:), T(:))
+</pre><img vspace="5" hspace="5" src="Hmw1_04.png" alt=""> <p>c)</p><pre class="codeinput">scatter(R(:), T(:))
+</pre><img vspace="5" hspace="5" src="Hmw1_05.png" alt=""> <p>d)</p><pre class="codeinput">corrTR = corr(T(:), R(:))
+</pre><pre class="codeoutput">
+corrTR =
+
+    0.6910
+
+</pre><p>e)</p><pre class="codeinput">a = corrTR*std(T(:))/std(R(:));
+b = mean(T(:)) - a*mean(R(:));
+figure
+scatter(R(:),T(:))
+hold <span class="string">on</span>
+plot(1:75, (1:75)*a + b, <span class="string">'r'</span>)
+</pre><img vspace="5" hspace="5" src="Hmw1_06.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+load('Data_HW1.mat')
+
+%% Problem 1
+% a)
+n = size(R(:),1);
+Rmean = sum(R(:)) / n
+
+R_sorted = sort(R(:));
+Rmedian = .5*(R_sorted(n/2) + R_sorted(n/2+1))
+
+[nelements,xcenters] = hist(R(:), 15);
+[maxelem, indmax] = max(nelements);
+Rmode = xcenters(indmax)
+
+Rmaximum = R_sorted(n)
+
+Rminimum = R_sorted(1)
+
+%%
+% b)
+
+figure
+hist(R(:))
+title('normal histogram')
+xlabel('value')
+ylabel('count')
+
+figure
+[nelements,xcenters] = hist(R(:), 15);
+nelements_c = cumsum(nelements);
+bar(xcenters, nelements_c, 'BarWidth',1)
+title('cumulative histogram')
+xlabel('value')
+ylabel('count')
+
+%%
+% c)
+
+Rstd = std(R(:))
+
+Q1 = R_sorted(n/4);
+Q3 = R_sorted(3*n/4);
+R_IQR = Q3 - Q1
+
+%%
+% d) 
+
+
+Rskewness = sum((R(:)-Rmean).^3)/(n*Rstd^3)
+
+R_CV = Rstd / Rmean
+
+%% Problem 2
+% a)
+
+hist(T(:), 50)
+
+%%
+% b)
+% 
+% Tq = quantile(T(:), 0:.01:1)
+% Rq = quantile(R(:), 0:.01:1)
+% figure
+% plot(Rq, Tq, 'x')
+
+qqplot(R(:), T(:))
+
+%%
+% c)
+
+scatter(R(:), T(:))
+
+%%
+% d)
+
+corrTR = corr(T(:), R(:))
+
+%%
+% e)
+a = corrTR*std(T(:))/std(R(:));
+b = mean(T(:)) - a*mean(R(:));
+figure
+scatter(R(:),T(:))
+hold on
+plot(1:75, (1:75)*a + b, 'r')
+
+
+##### SOURCE END #####
+--></body></html>
