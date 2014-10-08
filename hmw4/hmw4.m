@@ -122,7 +122,73 @@ disp(['T(x2, y2) = ' , num2str(T2)])
 
 %%
 % triangular method
+Pinterp = TriScatteredInterp(E, N, P);
+P1 = Pinterp(E1, N1);
+P2 = Pinterp(E2, N2);
+
+Tinterp = TriScatteredInterp(E, N, T);
+T1 = Tinterp(E1, N1);
+T2 = Tinterp(E2, N2);
+
+disp(['P(x1, y1) = ' , num2str(P1)])
+disp(['P(x2, y2) = ' , num2str(P2)])
+
+disp(['T(x1, y1) = ' , num2str(T1)])
+disp(['T(x2, y2) = ' , num2str(T2)])
+
+%%
+% Inverse distance method
+
+dN1 = N - N1;
+DE1 = E - E1;
+dist1 = sqrt(dN1.^2 + dE1.^2);
+P1 = dist1' * P / sum(dist1); 
+T1 = dist1' * T / sum(dist1);
+
+dN2 = N - N2;
+dE2 = E - E2;
+dist2 = sqrt(dN2.^2 + dE2.^2);
+P2 = dist2' * P / sum(dist2);
+T2 = dist2' * T / sum(dist2);
+
+disp(['P(x1, y1) = ' , num2str(P1)])
+disp(['P(x2, y2) = ' , num2str(P2)])
+
+disp(['T(x1, y1) = ' , num2str(T1)])
+disp(['T(x2, y2) = ' , num2str(T2)])
 
 
 %%
 % (b)
+
+spacing = 0:.1:10;
+n = length(spacing);
+Tgrid = nan(n);
+
+for i=1:n
+    for j = 1:n
+        Ns = spacing(i);
+        Es = spacing(j);
+        dN = Ns - N;
+        dE = Es - E;
+        dist = sqrt(dN.^2 + dE.^2);
+        Tgrid(i, j) = dist' * T / sum(dist);
+    end
+end
+
+imagesc(Tgrid)
+
+%%
+spacing = 0:.1:10;
+n = length(spacing);
+Tgrid = nan(n);
+
+for i=1:n
+    for j = 1:n
+        Ns = spacing(i);
+        Es = spacing(j);
+        Tgrid(i, j) = Tinterp(Es, Ns);
+    end
+end
+
+imagesc(Tgrid)
