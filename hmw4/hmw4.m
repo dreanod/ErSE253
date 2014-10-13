@@ -192,3 +192,20 @@ for i=1:n
 end
 
 imagesc(Tgrid)
+
+%% neighborhoods
+n = length(T);
+neighb_dist = zeros(n, 1);
+
+for i=1:n
+    mindist = Inf;
+    for j=1:n
+        dN = N(i) - N(j);
+        dE = E(i) - E(j);
+        dist = sqrt(dN^2 + dE^2);
+        if (dist ~= 0 && dist < mindist)
+            mindist = dist;
+        end
+    end
+    neighb_dist(i) = mindist;
+end
